@@ -6,14 +6,14 @@
 
 .hero-text {
   color: var(--text-red);
-  font-size: 4rem;
+  font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 700;
   margin: 1rem;
 }
 
 .hero-description {
   color: var(--secondary-color);
-  font-size: 2rem;
+  font-size: clamp(0.5rem, 3vw, 2rem);
   font-weight: 700;
   margin: 1rem;
 }
