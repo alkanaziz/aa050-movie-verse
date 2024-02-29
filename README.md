@@ -13,3 +13,7 @@ npm install react-bootstrap bootstrap
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 ```
+
+
+### Api Key
+http://www.omdbapi.com/?i=tt3896198&apikey=24a6f9a
