@@ -1,8 +1,15 @@
-# React + Vite
+# Movie Verse Browser App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Bootstrap installieren und implementieren
+https://react-bootstrap.netlify.app/docs/getting-started/introduction
 
-Currently, two official plugins are available:
+```bash
+npm install react-bootstrap bootstrap
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Bootstrap CSS
+```
+  /* The following line can be included in your src/index.js or App.js file */
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+```

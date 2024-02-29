@@ -1,14 +1,11 @@
-import { useState } from 'react'
-import './App.css'
+import Header from "./components/Header";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <h1>Movie Verse</h1>
+    <Header />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
