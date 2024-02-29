@@ -6,6 +6,7 @@ import { FaRegHeart } from "react-icons/fa6";
 function MovieSearch() {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const [favorites, setFavorites] = useState([]);
 
   // Fetch Information von API
   const getMovieRequest = async (searchValue) => {
@@ -30,6 +31,11 @@ function MovieSearch() {
     }
     console.log(searchValue);
   }, [searchValue]);
+
+  function addToFavorites(value) {
+    const newFavorites = [...favorites, value];
+    setFavorites(newFavorites);
+  }
 
   return (
     <Container>
@@ -60,12 +66,45 @@ function MovieSearch() {
                 <Card.Title>
                   {movie.Title} ({movie.Year})
                 </Card.Title>
-                <FaRegHeart className="like-icon" />
+                <FaRegHeart
+                  className="like-icon"
+                  onClick={() => addToFavorites(movie)}
+                />
               </Card.Body>
             </Card>
           );
         })}
       </div>
+
+      {/* FAVORITES SECTION START */}
+      <div className="row align-items-center justify-content-center mt-4">
+        <div>
+          <h2>FAVORITES LIST:</h2>
+        </div>
+      </div>
+      <div className="nowrap row">
+        {favorites.map((movie) => {
+          return (
+            <Card
+              className="pt-3 m-3"
+              style={{ width: "18rem" }}
+              key={movie.imdbID}
+            >
+              <Card.Img variant="top" src={movie.Poster} />
+              <Card.Body className="d-flex justify-content-between align-items-center">
+                <Card.Title>
+                  {movie.Title} ({movie.Year})
+                </Card.Title>
+                <FaRegHeart
+                  className="like-icon"
+                  onClick={() => addToFavorites(movie)}
+                />
+              </Card.Body>
+            </Card>
+          );
+        })}
+      </div>
+      {/* FAVORITES SECTION END  */}
     </Container>
   );
 }
