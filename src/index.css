@@ -18,3 +18,29 @@
   margin: 1rem;
 }
 
+.like-icon {
+  fill: var(--text-red);
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+}
+
+.like-icon:hover {
+  transform: scale(1.2);
+}
+
+.container > .nowrap {
+  overflow-x: auto;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.card {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
