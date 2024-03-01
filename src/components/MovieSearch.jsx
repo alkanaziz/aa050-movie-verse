@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { FaRegHeart } from "react-icons/fa6";
+import { FaHeart } from "react-icons/fa";
 
 function MovieSearch() {
   const [movies, setMovies] = useState([]);
@@ -32,9 +33,33 @@ function MovieSearch() {
     console.log(searchValue);
   }, [searchValue]);
 
+  useEffect(() => {
+    // LADEN aus localStorage unter der name "favorite-movies" und in favoriteMovies speichern
+    const favoriteMovies = JSON.parse(localStorage.getItem("favorite-movies"));
+
+    if (favoriteMovies) {
+      setFavorites(favoriteMovies);
+    }
+  }, []);
+
+  // SPICHERN in localStorage unter der name "favorite-movies"
+  const saveToLocalStorage = (items) => {
+    localStorage.setItem("favorite-movies", JSON.stringify(items));
+  };
+
   function addToFavorites(value) {
     const newFavorites = [...favorites, value];
     setFavorites(newFavorites);
+    saveToLocalStorage(newFavorites);
+  }
+
+  function removeFavoriteMovie(movie) {
+    const newFavoriteList = favorites.filter(
+      (favorite) => favorite.imdbID !== movie.imdbID
+    );
+
+    saveToLocalStorage(newFavoriteList);
+    setFavorites(newFavoriteList);
   }
 
   return (
@@ -66,10 +91,19 @@ function MovieSearch() {
                 <Card.Title>
                   {movie.Title} ({movie.Year})
                 </Card.Title>
-                <FaRegHeart
-                  className="like-icon"
-                  onClick={() => addToFavorites(movie)}
-                />
+                {favorites.some(
+                  (favorite) => favorite.imdbID == movie.imdbID
+                ) ? (
+                  <FaHeart
+                    className="like-icon"
+                    onClick={() => removeFavoriteMovie(movie)}
+                  />
+                ) : (
+                  <FaRegHeart
+                    className="like-icon"
+                    onClick={() => addToFavorites(movie)}
+                  />
+                )}
               </Card.Body>
             </Card>
           );
@@ -95,9 +129,9 @@ function MovieSearch() {
                 <Card.Title>
                   {movie.Title} ({movie.Year})
                 </Card.Title>
-                <FaRegHeart
+                <FaHeart
                   className="like-icon"
-                  onClick={() => addToFavorites(movie)}
+                  onClick={() => removeFavoriteMovie(movie)}
                 />
               </Card.Body>
             </Card>
