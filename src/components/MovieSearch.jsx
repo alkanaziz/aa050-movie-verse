@@ -11,7 +11,9 @@ function MovieSearch() {
 
   // Fetch Information von API
   const getMovieRequest = async (searchValue) => {
-    const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=24a6f9a`;
+    const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=${
+      import.meta.env.VITE_API_KEY
+    }`;
     try {
       const response = await fetch(url);
       const data = await response.json();
